@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ketan Patil - Web Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--darker) 100%);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--gradient-dark);
+            opacity: 0.03;
+        }
+
+        /* Header */
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            padding: 2px;
+            transition: var(--transition);
+            object-fit: cover;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::before {
+            width: 80%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .nav-links a i {
+            font-size: 14px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--dark);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 48px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--dark);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            margin: 40px auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .profile-container {
+            position: sticky;
+            top: 120px;
+        }
+
+        .profile-pic-wrapper {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            padding: 8px;
+            background: var(--gradient);
+            margin: 0 auto 30px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .github {
+            background: #333;
+        }
+
+        .email {
+            background: var(--accent);
+        }
+
+        .phone {
+            background: var(--success);
+        }
+
+        .linkedin {
+            background: #0077b5;
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .text-content h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 20px;
+            color: var(--dark);
+        }
+
+        .text-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-details i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        /* Skills Section */
+        .skill-section {
+            background: white;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-category h3 i {
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            border: 1px solid var(--gray-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .skill-item i {
+            font-size: 16px;
+        }
+
+        /* Projects Section */
+        .work-section {
+            background: #f8fafc;
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--gray-light);
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+            mix-blend-mode: multiply;
+        }
+
+        .project-card:hover .project-image::after {
+            opacity: 0.1;
+        }
+
+        .project-card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card-content h2 {
+            font-size: 1.3rem;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .project-card-content h2::after {
+            display: none;
+        }
+
+        .project-card-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .project-card-content strong {
+            color: var(--dark);
+        }
+
+        .project-card-content a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .project-card-content a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Education & Experience */
+        .education-container,
+        .experience-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item,
+        .experience-item {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .education-item:hover,
+        .experience-item:hover {
+            transform: translateX(10px);
+        }
+
+        .education-item h3,
+        .experience-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .education-item h3 i,
+        .experience-item h3 i {
+            color: var(--primary);
+        }
+
+        .institution {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .year {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .description {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Certifications */
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .certification-item {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .certification-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: var(--radius);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .certification-item:hover::before {
+            opacity: 1;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .certification-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Resume Section */
+        .resume-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .resume-item,
+        .cover-letter-item {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .resume-item h3,
+        .cover-letter-item h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resume-item h3 i,
+        .cover-letter-item h3 i {
+            color: var(--primary);
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-social h3,
+        .footer-contact h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .contact-button:hover {
+            background: var(--gradient);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .profile-container {
+                position: static;
+                text-align: center;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .skills-container,
+            .certifications-container {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+            }
+
+            .project-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-btn {
+                width: 200px;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        section {
+            opacity: 0;
+        }
+
+        section.animate-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Header start -->
+    <header id="main-header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="Image/LOGO.jpg" alt="Ketan Patil">
+                </div>
+                <nav id="navbar">
+                    <ul class="nav-links">
+                        <li><a href="#about"><i class="fas fa-user"></i> About Me</a></li>
+                        <li><a href="#skill"><i class="fas fa-code"></i> My Skills</a></li>
+                        <li><a href="#work"><i class="fas fa-briefcase"></i> Projects</a></li>
+                        <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                        <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                        <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
+                        <li><a href="#resume"><i class="fas fa-file-alt"></i> Resume</a></li>
+                    </ul>
+                </nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ketan Patil</h1>
+                <p>Full Stack Web Developer & Software Engineer</p>
+                <a href="#about" class="cta-button">
+                    Explore My Work <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About us start -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="profile-container">
+                    <div class="profile-pic-wrapper">
+                        <img src="Image/WhatsApp Image 2025-11-23 at 23.14.42_d2fe1f16.jpg" alt="Ketan Patil"
+                            class="profile-pic">
+                    </div>
+                    <div class="contact-links">
+                        <a href="https://github.com/Mrketan" target="_blank" class="social-icon github"
+                            aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:patilketan1303@gmail.com" class="social-icon email" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+7517305365" class="social-icon phone" aria-label="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ketan-patil-62629121b/" target="_blank"
+                            class="social-icon linkedin" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/7517305365" target="_blank" class="social-icon whatsapp"
+                            aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-content">
+                    <p>Hello, I'm Ketan Patil, a passionate software engineer with expertise in web development and
+                        software solutions. I love solving complex problems and building innovative applications that
+                        make life
+                        easier.</p>
+
+                    <h3>Professional Summary</h3>
+                    <p>User-focused Web Developer with strong experience in WordPress, PHP (CodeIgniter 4), and modern
+                        web technologies. Skilled in building secure, scalable websites and applications, custom plugin
+                        development, API integrations, and performance optimization. Experienced in handling complete
+                        project lifecycles, from requirement analysis to deployment. Comfortable working collaboratively
+                        and independently on complex web and fintech solutions.</p>
+
+                    <div class="contact-details">
+                        <p><i class="fas fa-mobile-alt"></i> <strong>Mobile:</strong> <a href="tel:+7517305365">+91
+                                7517305365</a></p>
+                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a
+                                href="mailto:patilketan1303@gmail.com">patilketan1303@gmail.com</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Pune, Maharashtra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skill" class="skill-section">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-cuttlefish"></i> C</span>
+                        <span class="skill-item"><i class="fab fa-cuttlefish"></i> C++</span>
+                        <span class="skill-item"><i class="fab fa-js-square"></i> JavaScript</span>
+                        <span class="skill-item"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-item"><i class="fas fa-sitemap"></i> DSA</span>
+                        <span class="skill-item"><i class="fas fa-cube"></i> OOPs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-html5"></i> HTML</span>
+                        <span class="skill-item"><i class="fab fa-css3-alt"></i> CSS</span>
+                        <span class="skill-item"><i class="fab fa-js-square"></i> JavaScript</span>
+                        <span class="skill-item"><i class="fab fa-react"></i> React JS</span>
+                        <span class="skill-item"><i class="fab fa-php"></i> PHP</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-layer-group"></i> Frameworks & CMS</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-fire"></i> CodeIgniter 4</span>
+                        <span class="skill-item"><i class="fab fa-wordpress"></i> WordPress</span>
+                        <span class="skill-item"><i class="fas fa-store"></i> Shopify</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Backend & Database</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-php"></i> PHP</span>
+                        <span class="skill-item"><i class="fas fa-database"></i> MySQL</span>
+                        <span class="skill-item"><i class="fas fa-project-diagram"></i> SQL Schema Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-plug"></i> API Integrations</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-credit-card"></i> Payment Gateways</span>
+                        <span class="skill-item"><i class="fas fa-university"></i> Banking APIs</span>
+                        <span class="skill-item"><i class="fas fa-money-bill-wave"></i> BBPS</span>
+                        <span class="skill-item"><i class="fas fa-mobile-alt"></i> UPI</span>
+                        <span class="skill-item"><i class="fas fa-car"></i> RC Verification API</span>
+                        <span class="skill-item"><i class="fas fa-video"></i> Zoom/Google Meet</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Other Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-headset"></i> Technical Support</span>
+                        <span class="skill-item"><i class="fas fa-tachometer-alt"></i> Website Optimization</span>
+                        <span class="skill-item"><i class="fas fa-pen-fancy"></i> Technical Writing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="work" class="work-section">
+        <div class="container">
+            <h2>My Projects</h2>
+            <p class="section-description">
+                I am dedicated to delivering high-quality, innovative projects that empower clients to reach their
+                goals.
+                From custom web development to eCommerce solutions, I craft seamless digital experiences tailored to
+                each
+                business's unique needs, ensuring functionality and design work in harmony to elevate brands.
+            </p>
+
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="wordpress">WordPress</button>
+                <button class="filter-btn" data-filter="codeigniter">CodeIgniter</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="portfolio">Portfolio</button>
+                <button class="filter-btn" data-filter="fintech">Fintech</button>
+            </div>
+
+            <div class="project-grid">
+                <!-- Sahyadree Softech -->
+                <div class="project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Sahyadree .png" alt="Sahyadree Softech Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Sahyadree Softech</h2>
+                        <p><strong>Website:</strong> <a href="https://sahyadreesofttech.com/" target="_blank">Visit the
+                                site <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Sahyadree Softech is a professional website I developed using WordPress, showcasing a
+                            comprehensive range of services and solutions. The design reflects the company's expertise
+                            in technology, quality, and innovation.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, PHP, HTML, CSS, Elementor, Yoast SEO, WPForms.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tinyfinger -->
+                <div class="project-card" data-category="wordpress ecommerce">
+                    <div class="project-image">
+                        <img src="Image/tiny.png" alt="Tinyfinger eCommerce Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Tinyfinger - E-commerce Website</h2>
+                        <p><strong>Website:</strong> <a href="https://tinyfinger.net/" target="_blank">Visit the site <i
+                                    class="fas fa-external-link-alt"></i></a></p>
+                        <p>An eCommerce website for Tinyfinger, designed to be visually engaging, user-friendly, and
+                            optimized for a seamless shopping experience.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Spikermedia -->
+                <div class="project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Spiker media.png" alt="Spikermedia Digital Marketing Agency Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Spikermedia Digital Marketing Agency Website</h2>
+                        <p><strong>Website:</strong> <a href="https://spikermedia.com/" target="_blank">Visit the site
+                                <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Created a professional portfolio website for Spikermedia, a digital marketing agency, to
+                            showcase its services, client portfolio, and expertise in the digital marketing industry.
+                        </p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- The Humanangle -->
+                <div class="project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Humanangle.png" alt="The Humanangle Psychiatry Doctor Portfolio Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>The Humanangle – Psychiatry Doctor Portfolio Website</h2>
+                        <p><strong>Website:</strong> <a href="https://thehumanangle.in/" target="_blank">Visit the site
+                                <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Created a professional portfolio website for The Humanangle, a psychiatry doctor specializing
+                            in mental health services. The website highlights the doctor's expertise, services offered,
+                            patient testimonials, and contact information.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Corporate Coworks -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/Corporate Coworks.png" alt="Corporate Coworks Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Corporate Coworks</h2>
+                        <p><strong>Website:</strong> <a href="https://corporatecoworks.com" target="_blank">Visit the
+                                site <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Corporate Coworks is an aggregate website for coworking spaces with an election campaign
+                            agency component. The site was developed to streamline coworking space listings and provide
+                            a platform for clients involved in election campaigns.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Election Promotions -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/Eleprs.png" alt="Election Promotion Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Election Promotion Website – Election Campaign Agency</h2>
+                        <p><strong>Website:</strong> <a href="https://electionpromotions.com" target="_blank">Visit the
+                                site <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Developed an Election Promotion website specifically tailored for an election campaign
+                            agency. The platform provides comprehensive services focused solely on election campaign
+                            services.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Techlium Software Solutions -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/techlium.png" alt="Techlium Software Solutions Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Techlium Software Solutions</h2>
+                        <p><strong>Website:</strong> <a href="https://techlium.com/" target="_blank">Visit the site <i
+                                    class="fas fa-external-link-alt"></i></a></p>
+                        <p>Developed and migrated the Techlium Software Solutions website, an IT service platform aimed
+                            at providing comprehensive solutions for businesses in the IT sector.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- MMinterio -->
+                <div class="project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/mm.png" alt="MMinterio Interior Design Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>MMinterio - Interior Design Website</h2>
+                        <p><strong>Website:</strong> <a href="https://mminterio.com" target="_blank">Visit the site <i
+                                    class="fas fa-external-link-alt"></i></a></p>
+                        <p>MMinterio is an Interior Design website that provides innovative and stylish solutions for
+                            home and office interiors. The website highlights their design services and showcases
+                            portfolio pieces effectively.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Brandedge Infotech -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/brandedge infotech .png" alt="Brandedge Infotech Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Brandedge Infotech</h2>
+                        <p><strong>Website:</strong> <a href="https://brandedgeinfotech.com" target="_blank">Visit the
+                                site <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Brandedge Infotech is a digital marketing company that offers comprehensive IT services. I
+                            was responsible for the full-fledged development and management of their website.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Satva Ayurveda -->
+                <div class="project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Satva.png" alt="Satva Ayurveda Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Satva Ayurveda – Panchkarma & Reiki Healing Center</h2>
+                        <p><strong>Website:</strong> <a href="https://satvaayurveda.in" target="_blank">Visit the site
+                                <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Created and managed the website for Satva Ayurveda, a Panchkarma and Reiki Healing Center.
+                            The website showcases their wellness services, offering visitors information about their
+                            therapies and healing practices.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- The Vijayantra -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/vj.png" alt="The Vijayantra Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>The Vijayantra Website</h2>
+                        <p><strong>Website:</strong> <a href="https://vijayantra.com" target="_blank">Visit the site <i
+                                    class="fas fa-external-link-alt"></i></a></p>
+                        <p>Developed The Vijayantra website, an all-in-one business platform designed to serve multiple
+                            business purposes. The platform's clean layout and interactive sections ensure that users
+                            have an engaging and seamless experience.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Pune Coworking -->
+                <div class="project-card" data-category="wordpress">
+                    <div class="project-image">
+                        <img src="Image/pc.png" alt="Pune Coworking Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Pune Coworking Website</h2>
+                        <p><strong>Website:</strong> <a href="https://punecoworking.com/" target="_blank">Visit the site
+                                <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Designed and developed the Pune Coworking website, a platform dedicated to offering
+                            co-working office spaces in Pune. The website allows users to explore available co-working
+                            office spaces with detailed information about facilities, pricing, and booking options.</p>
+                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Techfreshers.org - LMS Platform -->
+                <div class="project-card" data-category="codeigniter">
+                    <div class="project-image">
+                        <img src="Image/Techfresher.png" alt="Techfreshers.org LMS Platform">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Techfreshers.org - LMS Platform</h2>
+                        <p><strong>Website:</strong> <a href="https://techfreshers.org/" target="_blank">Visit the site
+                                <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Developed a comprehensive Learning Management System with instructor and student login
+                            system, course management system, PDF syllabus upload, reward & point system, and
+                            Zoom/Google Meet & AI integration.</p>
+                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, JavaScript.</p>
+                    </div>
+                </div>
+
+                <!-- Erupaiya.com - Fintech/Wallet Application -->
+                <div class="project-card" data-category="codeigniter fintech">
+                    <div class="project-image">
+                        <img src="Image/Erupaiya.png" alt="Erupaiya Fintech Application">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Erupaiya.com - Fintech/Wallet Application</h2>
+                        <p><strong>Website:</strong> <a href="https://erupaiya.com/" target="_blank">Visit the site <i
+                                    class="fas fa-external-link-alt"></i></a></p>
+                        <p>Built on CodeIgniter 4, this fintech application features Wallet System, BBPS, DMT, Payout,
+                            Bulk Payout, UPI, and Bharat Connect Utilities. Handles complete transaction backend
+                            operations with four panels: Admin, Master Distributor, Distributor, Agent.</p>
+                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, HTML, CSS.</p>
+                    </div>
+                </div>
+
+                <!-- Vehicle Registration System -->
+                <div class="project-card" data-category="codeigniter">
+                    <div class="project-image">
+                        <img src="Image/rc.png" alt="Vehicle Registration System">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Vehicle Registration System</h2>
+                        <p><strong>Website:</strong> <a href="https://www.innoplixit.com/vehicleregistration/"
+                                target="_blank">Visit the site <i class="fas fa-external-link-alt"></i></a></p>
+                        <p>Working on vehicle registration system with RC Verification API integration and Cashfree APIs
+                            testing for Innoplix IT Pvt. Ltd.</p>
+                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, RC Verification API, Cashfree
+                            APIs.</p>
+                    </div>
+                </div>
+
+                <!-- Multi-Functional Robot (IoT-Based) -->
+                <div class="project-card" data-category="iot">
+                    <div class="project-image">
+                        <img src="Image/robot-placeholder.jpg" alt="Multi-Functional Robot">
+                    </div>
+                    <div class="project-card-content">
+                        <h2>Multi-Functional Robot (IoT-Based)</h2>
+                        <p><strong>Role:</strong> Circuit Designer</p>
+                        <p>Developed obstacle detection using ultrasonic sensors and implemented automatic navigation
+                            and decision-making algorithms for an IoT-based multi-functional robot.</p>
+                        <p><strong>Technologies Used:</strong> IoT, Arduino, Sensors, C++.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>My Education</h2>
+            <div class="education-container">
+                <div class="education-item">
+                    <h3><i class="fas fa-graduation-cap"></i> Bachelor of Engineering in Computer Science</h3>
+                    <p class="institution">MET Bhujbal Knowledge City, Nashik</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> 2019 - 2023</p>
+                    <p class="description">CGPA: 7.58</p>
+                </div>
+                <div class="education-item">
+                    <h3><i class="fas fa-school"></i> Higher Secondary Certificate (HSC)</h3>
+                    <p class="institution">K.T.H.M College, Nashik</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> 2018 - 2019</p>
+                    <p class="description">Percentage: 55.69%</p>
+                </div>
+                <div class="education-item">
+                    <h3><i class="fas fa-book"></i> Secondary School Certificate (SSC)</h3>
+                    <p class="institution">Rachana Vidhyalaya, Nashik</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> 2016 - 2017</p>
+                    <p class="description">Percentage: 78.80%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-container">
+                <div class="experience-item">
+                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                    <p class="institution">Innoplix IT Pvt. Ltd.</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2025 – Present</p>
+                    <p class="description">
+                        Developing and maintaining company website using HTML, CSS, JavaScript, and PHP. Created custom
+                        WordPress plugins and integrated RC Verification API. Working on vehicle registration system and
+                        Techfreshers.org LMS platform.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                    <p class="institution">Ozone CoWorks / Techlium Software Solutions</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> July 2024 – Jan 2025
+                    </p>
+                    <p class="description">
+                        Built custom WordPress themes and web applications. Designed database schemas & integrated
+                        third-party APIs. Deployed applications on Apache/Nginx servers.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                    <p class="institution">Sahyadree Softech Pvt Ltd</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2024 – June 2024</p>
+                    <p class="description">
+                        Migrated websites to WordPress. Developed custom post types, plugins, and taxonomies.
+                        Implemented best practices for website security.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                    <p class="institution">PRObity IT Services</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> July 2023 – Dec 2023</p>
+                    <p class="description">
+                        Improved cross-browser compatibility. Designed responsive layouts. Configured servers for
+                        WordPress optimization.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <h3><i class="fas fa-user-tie"></i> Self Employment</h3>
+                    <p class="institution">WebWave Solution</p>
+                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2021 - Present</p>
+                    <p class="description">
+                        As a Self-Employed Web Developer, I specialized in full-stack web applications tailored to
+                        client needs, focusing on performance optimization and seamless integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section">
+        <div class="container">
+            <h2>Certifications</h2>
+            <div class="certifications-container">
+                <div class="certification-item">
+                    <h3>Journal of Interdisciplinary Cycle Research Certification</h3>
+                    <p>Certification in interdisciplinary research methodologies and applications.</p>
+                </div>
+                <div class="certification-item">
+                    <h3>National Skill Development Corporation Certificate</h3>
+                    <p>Certificate from NSDC validating web development skills and competencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume-section">
+        <div class="container">
+            <h2>My Resume & Cover Letter</h2>
+            <div class="resume-content">
+                <div class="resume-item">
+                    <h3><i class="fas fa-file-pdf"></i> Resume</h3>
+                    <div
+                        style="background: #f8fafc; padding: 30px; border-radius: var(--radius); margin-bottom: 20px; height: 500px; overflow: auto;">
+                        <h4>Ketan Patil - Resume Preview</h4>
+                        <p><strong>Full Stack Web Developer</strong></p>
+                        <p><strong>Contact:</strong> +91 7517305365 | patilketan1303@gmail.com</p>
+                        <p><strong>Location:</strong> Pune, Maharashtra</p>
+                        <hr style="margin: 20px 0; border-color: #e2e8f0;">
+                        <h5>Professional Summary</h5>
+                        <p>User-focused Web Developer with strong experience in WordPress, PHP (CodeIgniter 4), and
+                            modern web technologies...</p>
+                        <h5>Technical Skills</h5>
+                        <p>WordPress, PHP, CodeIgniter 4, HTML, CSS, JavaScript, MySQL, React JS, API Integrations</p>
+                        <h5>Experience</h5>
+                        <p><strong>Web Developer</strong> - Innoplix IT Pvt. Ltd. (Jan 2025 - Present)</p>
+                        <p>Developing and maintaining company websites, creating custom WordPress plugins...</p>
+                    </div>
+                    <a href="Ketan_Patil_Web.pdf" download class="download-button">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+                <div class="cover-letter-item">
+                    <h3><i class="fas fa-file-alt"></i> Cover Letter</h3>
+                    <div
+                        style="background: #f8fafc; padding: 30px; border-radius: var(--radius); margin-bottom: 20px; height: 500px; overflow: auto;">
+                        <h4>Ketan Patil - Cover Letter Preview</h4>
+                        <p>Dear Hiring Manager,</p>
+                        <p>I am writing to express my interest in the Web Developer position at your company. With 2+
+                            years of experience in full-stack web development...</p>
+                        <p>My expertise includes:</p>
+                        <ul>
+                            <li>WordPress development and customization</li>
+                            <li>PHP and CodeIgniter 4 framework</li>
+                            <li>Frontend technologies (HTML, CSS, JavaScript, React)</li>
+                            <li>Database design and optimization</li>
+                            <li>API integrations and third-party services</li>
+                        </ul>
+                        <p>I am confident that my skills and experience align well with your requirements...</p>
+                        <p>Sincerely,<br>Ketan Patil</p>
+                    </div>
+                    <a href="Ketan_Patil_Web_Cover_Letter.pdf" download class="download-button">
+                        <i class="fas fa-download"></i> Download Cover Letter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="Image/LOGO.jpg" alt="Company Logo" class="logo">
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Me</h3>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/ketan-patil-webdeveloper/" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Mrketan" target="_blank" aria-label="GitHub"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Me</h3>
+                    <div class="contact-buttons">
+                        <a href="tel:+7517305365" class="contact-button call-button" aria-label="Call Us">
+                            <i class="fas fa-phone-alt"></i> Call
+                        </a>
+                        <a href="mailto:patilketan1303@gmail.com" class="contact-button mail-button"
+                            aria-label="Mail Us">
+                            <i class="fas fa-envelope"></i> Mail
+                        </a>
+                        <a href="https://wa.link/l6ivpm" target="_blank" class="contact-button whatsapp-button"
+                            aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ketan Patil. Designed with ❤️ by Ketan Patil.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', function () {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll to Top Button
+            const scrollTopBtn = document.getElementById('scrollTop');
+
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+
+                // Update active nav link
+                const sections = document.querySelectorAll('section[id]');
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            scrollTopBtn.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Project Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const categories = card.getAttribute('data-category');
+
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for animation
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Skill item hover effect enhancement
+            const skillItems = document.querySelectorAll('.skill-item');
+            skillItems.forEach(item => {
+                item.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add typewriter effect to hero section
+            const heroText = document.querySelector('.hero-content h1');
+            const originalText = heroText.textContent;
+            heroText.textContent = '';
+
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    heroText.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+
+            // Start typing after a short delay
+            setTimeout(typeWriter, 500);
+
+            // Parallax effect for hero section
+            window.addEventListener('scroll', function () {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-section');
+                if (scrolled < hero.offsetHeight) {
+                    hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+                }
+            });
+
+            // Initialize all projects as visible
+            projectCards.forEach(card => {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            });
+
+            // Handle image loading errors
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function () {
+                    if (!this.hasAttribute('data-fallback-set')) {
+                        // Create fallback SVG
+                        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        svg.setAttribute('viewBox', '0 0 100 100');
+
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circle.setAttribute('cx', '50');
+                        circle.setAttribute('cy', '50');
+                        circle.setAttribute('r', '45');
+                        circle.setAttribute('fill', '#2563eb');
+
+                        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                        text.setAttribute('x', '50');
+                        text.setAttribute('y', '55');
+                        text.setAttribute('text-anchor', 'middle');
+                        text.setAttribute('fill', 'white');
+                        text.setAttribute('font-size', '30');
+                        text.setAttribute('font-family', 'Arial, sans-serif');
+                        text.textContent = 'KP';
+
+                        svg.appendChild(circle);
+                        svg.appendChild(text);
+
+                        // Convert SVG to data URL
+                        const svgString = new XMLSerializer().serializeToString(svg);
+                        const dataUrl = 'data:image/svg+xml,' + encodeURIComponent(svgString);
+
+                        this.src = dataUrl;
+                        this.setAttribute('data-fallback-set', 'true');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
