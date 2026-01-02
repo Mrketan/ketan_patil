@@ -5,31 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ketan Patil - Web Developer Portfolio</title>
+    <title>Ketan Patil | Full Stack Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #60a5fa;
-            --secondary: #7c3aed;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #ec4899;
             --accent: #06b6d4;
             --dark: #0f172a;
             --darker: #020617;
             --light: #f8fafc;
             --gray: #94a3b8;
+            --gray-dark: #475569;
             --gray-light: #e2e8f0;
-            --success: #10b981;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(99, 102, 241, 0.2);
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--darker) 100%);
-            --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
-            --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.15);
-            --radius: 12px;
-            --radius-lg: 20px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-card: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -38,13 +41,18 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: var(--light);
+            background: var(--darker);
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
 
         body::before {
@@ -55,10 +63,27 @@
             width: 100%;
             height: 100%;
             background:
-                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.03) 0%, transparent 50%);
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(236, 72, 153, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(99, 102, 241, 0.03) 50%, transparent 70%);
+            animation: gradientShift 20s ease infinite;
             z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-20px); }
         }
 
         .container {
@@ -67,16 +92,12 @@
             padding: 0 24px;
         }
 
-        /* Animated Background */
-        .animated-bg {
+        /* Particles Background */
+        #particles-js {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-            background: var(--gradient-dark);
-            opacity: 0.03;
+            z-index: -1;
         }
 
         /* Header */
@@ -85,74 +106,95 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 0;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo img {
-            height: 50px;
-            width: 50px;
+            height: 48px;
+            width: 48px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
+            border: 2px solid var(--primary);
             padding: 2px;
             transition: var(--transition);
             object-fit: cover;
         }
 
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         .logo img:hover {
-            transform: scale(1.05);
+            transform: rotate(10deg) scale(1.1);
             border-color: var(--secondary);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 8px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--gray);
             font-weight: 500;
-            font-size: 15px;
+            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: var(--radius);
             transition: var(--transition);
             position: relative;
+            overflow: hidden;
         }
 
         .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: var(--gradient);
+            opacity: 0.1;
             transition: var(--transition);
         }
 
         .nav-links a:hover::before {
-            width: 80%;
+            left: 0;
         }
 
         .nav-links a:hover {
+            color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(99, 102, 241, 0.1);
             color: var(--primary);
-            background: rgba(37, 99, 235, 0.05);
         }
 
         .nav-links a i {
@@ -165,12 +207,14 @@
             gap: 4px;
             cursor: pointer;
             padding: 10px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 8px;
         }
 
         .hamburger span {
             width: 25px;
             height: 2px;
-            background: var(--dark);
+            background: var(--light);
             transition: var(--transition);
         }
 
@@ -187,44 +231,82 @@
         .hero-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
             z-index: -1;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .hero-content {
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--primary-light);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
         .hero-content h1 {
             font-size: 4.5rem;
-            font-weight: 800;
-            background: var(--gradient);
+            font-weight: 900;
+            background: linear-gradient(to right, #fff 30%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.5px;
         }
 
-        .hero-content p {
+        .hero-subtitle {
             font-size: 1.5rem;
             color: var(--gray);
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             font-weight: 400;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 48px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .cta-button {
@@ -235,7 +317,7 @@
             background: var(--gradient);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: var(--radius);
             font-weight: 600;
             font-size: 16px;
             transition: var(--transition);
@@ -244,6 +326,12 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
         .cta-button::before {
@@ -262,49 +350,78 @@
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
         }
 
         /* Sections Common */
         section {
-            padding: 100px 0;
+            padding: 120px 0;
             position: relative;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .section-header {
             text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-            color: var(--dark);
+            margin-bottom: 80px;
         }
 
-        h2::after {
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--gradient);
             border-radius: 2px;
         }
 
-        /* About Section */
-        .about-section {
-            background: white;
-            border-radius: var(--radius-lg);
-            margin: 40px auto;
-            max-width: 1200px;
-            box-shadow: var(--shadow);
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
         }
 
+        /* Cards Common */
+        .card {
+            background: var(--gradient-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 60px;
             align-items: start;
         }
@@ -314,15 +431,30 @@
             top: 120px;
         }
 
+        .profile-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
         .profile-pic-wrapper {
-            width: 280px;
-            height: 280px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            padding: 8px;
-            background: var(--gradient);
             margin: 0 auto 30px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
+            position: relative;
+        }
+
+        .profile-pic-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: var(--gradient);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
         }
 
         .profile-pic {
@@ -330,68 +462,69 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
+            position: relative;
+            z-index: 1;
+            border: 4px solid var(--dark);
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .social-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 20px;
+            font-size: 18px;
             text-decoration: none;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-icon:hover {
             transform: translateY(-5px);
-        }
-
-        .github {
-            background: #333;
-        }
-
-        .email {
-            background: var(--accent);
-        }
-
-        .phone {
-            background: var(--success);
-        }
-
-        .linkedin {
-            background: #0077b5;
-        }
-
-        .whatsapp {
-            background: #25d366;
+            background: var(--gradient);
+            border-color: transparent;
         }
 
         .text-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 30px 0 20px;
-            color: var(--dark);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .text-content h3 i {
+            color: var(--primary);
         }
 
         .text-content p {
             color: var(--gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--primary-light);
         }
 
         .contact-details {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background: rgba(99, 102, 241, 0.05);
             padding: 30px;
             border-radius: var(--radius);
             margin-top: 40px;
@@ -403,6 +536,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            color: var(--gray);
+        }
+
+        .contact-details strong {
+            color: var(--light);
+            min-width: 80px;
         }
 
         .contact-details i {
@@ -411,34 +550,20 @@
         }
 
         /* Skills Section */
-        .skill-section {
-            background: white;
-        }
-
-        .skills-container {
+        .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
         .skill-category {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--gray-light);
-            transition: var(--transition);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            padding: 0;
         }
 
         .skill-category h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--dark);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--light);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -446,6 +571,7 @@
 
         .skill-category h3 i {
             color: var(--primary);
+            font-size: 1.2rem;
         }
 
         .skill-list {
@@ -455,24 +581,25 @@
         }
 
         .skill-item {
-            background: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 15px;
             font-weight: 500;
-            color: var(--dark);
-            border: 1px solid var(--gray-light);
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: var(--transition);
         }
 
         .skill-item:hover {
             background: var(--gradient);
             color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .skill-item i {
@@ -480,19 +607,6 @@
         }
 
         /* Projects Section */
-        .work-section {
-            background: #f8fafc;
-        }
-
-        .section-description {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
         .project-filters {
             display: flex;
             justify-content: center;
@@ -502,19 +616,20 @@
         }
 
         .filter-btn {
-            padding: 12px 24px;
-            background: white;
-            border: 2px solid var(--gray-light);
-            border-radius: 25px;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
-            color: var(--dark);
+            color: var(--gray);
         }
 
         .filter-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .filter-btn.active {
@@ -530,25 +645,16 @@
         }
 
         .project-card {
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            height: 100%;
             display: flex;
             flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            height: 100%;
         }
 
         .project-image {
             width: 100%;
             height: 220px;
             overflow: hidden;
+            border-radius: var(--radius) var(--radius) 0 0;
             position: relative;
         }
 
@@ -560,7 +666,7 @@
         }
 
         .project-card:hover .project-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .project-image::after {
@@ -577,7 +683,7 @@
         }
 
         .project-card:hover .project-image::after {
-            opacity: 0.1;
+            opacity: 0.3;
         }
 
         .project-card-content {
@@ -587,89 +693,124 @@
             flex-direction: column;
         }
 
-        .project-card-content h2 {
-            font-size: 1.3rem;
-            text-align: left;
+        .project-card-content h3 {
+            font-size: 1.4rem;
             margin-bottom: 15px;
-        }
-
-        .project-card-content h2::after {
-            display: none;
+            color: var(--light);
         }
 
         .project-card-content p {
             color: var(--gray);
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 20px;
+            line-height: 1.7;
             flex-grow: 1;
         }
 
-        .project-card-content strong {
-            color: var(--dark);
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .project-card-content a {
+        .tech-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
             transition: var(--transition);
+            margin-top: auto;
         }
 
-        .project-card-content a:hover {
+        .project-link:hover {
             color: var(--secondary);
-            text-decoration: underline;
+            gap: 12px;
         }
 
-        /* Education & Experience */
-        .education-container,
-        .experience-container {
-            max-width: 800px;
+        /* Timeline Sections (Education & Experience) */
+        .timeline {
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
 
-        .education-item,
-        .experience-item {
-            background: white;
-            padding: 40px;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 3px solid var(--dark);
+        }
+
+        .timeline-content {
+            background: var(--gradient-card);
+            border: 1px solid var(--card-border);
             border-radius: var(--radius);
-            margin-bottom: 24px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary);
+            padding: 30px;
             transition: var(--transition);
         }
 
-        .education-item:hover,
-        .experience-item:hover {
+        .timeline-content:hover {
             transform: translateX(10px);
+            border-color: var(--primary);
         }
 
-        .education-item h3,
-        .experience-item h3 {
+        .timeline-content h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: var(--light);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .education-item h3 i,
-        .experience-item h3 i {
+        .timeline-content h3 i {
             color: var(--primary);
         }
 
         .institution {
             font-size: 1.1rem;
-            color: var(--gray);
+            color: var(--primary-light);
             margin-bottom: 8px;
             font-weight: 500;
         }
 
         .year {
-            color: var(--primary);
+            color: var(--gray);
             font-weight: 500;
             margin-bottom: 15px;
             display: flex;
@@ -679,53 +820,53 @@
 
         .description {
             color: var(--gray);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         /* Certifications */
-        .certifications-container {
+        .certifications-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
         .certification-item {
-            background: white;
             padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            text-align: center;
             position: relative;
-            transition: var(--transition);
+            overflow: hidden;
         }
 
         .certification-item::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: var(--gradient);
-            border-radius: var(--radius);
-            z-index: -1;
             opacity: 0;
             transition: var(--transition);
+            animation: rotate 20s linear infinite;
         }
 
         .certification-item:hover::before {
-            opacity: 1;
-        }
-
-        .certification-item:hover {
-            transform: translateY(-5px);
+            opacity: 0.1;
         }
 
         .certification-item h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+
+        .certification-item p {
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
         }
 
         /* Resume Section */
@@ -735,54 +876,62 @@
             gap: 40px;
         }
 
-        .resume-item,
-        .cover-letter-item {
-            background: white;
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        .resume-item {
+            text-align: center;
+            padding: 50px 40px;
         }
 
-        .resume-item h3,
-        .cover-letter-item h3 {
+        .resume-item h3 {
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--light);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
+            font-size: 1.5rem;
         }
 
-        .resume-item h3 i,
-        .cover-letter-item h3 i {
+        .resume-item h3 i {
             color: var(--primary);
+        }
+
+        .resume-preview {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            height: 300px;
+            overflow: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .download-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
+            gap: 12px;
+            padding: 16px 40px;
             background: var(--gradient);
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            margin-top: 20px;
+            border-radius: var(--radius);
+            font-weight: 600;
             transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
         .download-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
+            gap: 16px;
         }
 
         /* Footer */
         .footer {
-            background: var(--dark);
-            color: white;
+            background: rgba(2, 6, 23, 0.95);
             padding: 80px 0 30px;
             position: relative;
-            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .footer::before {
@@ -797,46 +946,53 @@
 
         .footer-container {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-columns: 2fr 3fr 2fr;
             gap: 60px;
             align-items: start;
         }
 
-        .footer-logo img {
-            height: 60px;
-            width: 60px;
-            border-radius: 50%;
-            object-fit: cover;
+        .footer-brand .logo {
+            margin-bottom: 20px;
+            justify-content: flex-start;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
         }
 
         .footer-social h3,
         .footer-contact h3 {
             font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 25px;
+            color: var(--light);
         }
 
         .social-icons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .social-icons a {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--gray);
             font-size: 20px;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-icons a:hover {
             background: var(--gradient);
-            transform: translateY(-3px);
+            color: white;
+            transform: translateY(-5px);
+            border-color: transparent;
         }
 
         .contact-buttons {
@@ -848,26 +1004,30 @@
         .contact-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            gap: 12px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gray);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: var(--radius);
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .contact-button:hover {
             background: var(--gradient);
+            color: white;
             transform: translateX(5px);
+            border-color: transparent;
         }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 80px;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--gray);
+            font-size: 14px;
         }
 
         /* Scroll to Top */
@@ -875,8 +1035,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            width: 56px;
+            height: 56px;
             background: var(--gradient);
             color: white;
             border: none;
@@ -901,11 +1061,28 @@
         }
 
         .scroll-top:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
             box-shadow: var(--shadow-hover);
         }
 
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .hero-content h1 {
                 font-size: 3.5rem;
@@ -925,9 +1102,9 @@
                 grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             }
 
-            .footer-container {
+            .resume-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
         }
 
@@ -935,14 +1112,17 @@
             .nav-links {
                 display: none;
                 position: fixed;
-                top: 80px;
+                top: 90px;
                 left: 0;
                 width: 100%;
-                background: white;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(20px);
                 padding: 20px;
                 box-shadow: var(--shadow);
                 flex-direction: column;
                 gap: 10px;
+                border-radius: 0 0 var(--radius) var(--radius);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .nav-links.active {
@@ -966,38 +1146,80 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
-            .hero-content p {
+            .hero-subtitle {
                 font-size: 1.2rem;
             }
 
-            .skills-container,
-            .certifications-container {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid,
+            .certifications-grid {
                 grid-template-columns: 1fr;
             }
 
-            .resume-content {
-                grid-template-columns: 1fr;
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-marker {
+                left: 14px;
             }
 
             .project-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .footer-brand .logo {
+                justify-content: center;
+            }
+
+            .social-icons,
+            .contact-buttons {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 16px;
+                padding: 0 20px;
             }
 
-            h2 {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
                 font-size: 2rem;
             }
 
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .cta-button {
-                padding: 15px 30px;
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
             }
 
             .project-filters {
@@ -1006,54 +1228,87 @@
             }
 
             .filter-btn {
-                width: 200px;
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .card {
+                padding: 30px 20px;
             }
         }
 
         /* Animation Classes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        section {
+        .animate-on-scroll {
             opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        section.animate-in {
+        .animate-on-scroll.visible {
             opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(99, 102, 241, 0.2);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 
 <body>
-    <div class="animated-bg"></div>
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
 
-    <!-- Header start -->
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Header -->
     <header id="main-header">
         <div class="container">
             <div class="header-container">
-                <div class="logo">
+                <a href="#" class="logo">
                     <img src="Image/LOGO.jpg" alt="Ketan Patil">
-                </div>
+                    <span class="logo-text">Ketan Patil</span>
+                </a>
                 <nav id="navbar">
                     <ul class="nav-links">
-                        <li><a href="#about"><i class="fas fa-user"></i> About Me</a></li>
-                        <li><a href="#skill"><i class="fas fa-code"></i> My Skills</a></li>
+                        <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                        <li><a href="#skill"><i class="fas fa-code"></i> Skills</a></li>
                         <li><a href="#work"><i class="fas fa-briefcase"></i> Projects</a></li>
                         <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                        <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+                        <li><a href="#experience"><i class="fas fa-suitcase"></i> Experience</a></li>
                         <li><a href="#certifications"><i class="fas fa-certificate"></i> Certifications</a></li>
                         <li><a href="#resume"><i class="fas fa-file-alt"></i> Resume</a></li>
                     </ul>
@@ -1071,66 +1326,77 @@
     <section class="hero-section">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    Full Stack Web Developer
+                </div>
                 <h1>Ketan Patil</h1>
-                <p>Full Stack Web Developer & Software Engineer</p>
-                <a href="#about" class="cta-button">
-                    Explore My Work <i class="fas fa-arrow-down"></i>
-                </a>
+                <p class="hero-subtitle">Building Digital Experiences That Drive Results</p>
+                <p class="hero-description">
+                    Passionate software engineer specializing in modern web development. I create scalable, 
+                    performant applications with clean code and innovative solutions.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#work" class="cta-button">
+                        <i class="fas fa-rocket"></i> View Projects
+                    </a>
+                    <a href="#contact" class="cta-button secondary">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- About us start -->
-    <section id="about" class="about-section">
+    <!-- About Section -->
+    <section id="about">
         <div class="container">
-            <h2>About Me</h2>
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p class="section-subtitle">Get to know the person behind the code</p>
+            </div>
+            
             <div class="about-content">
                 <div class="profile-container">
-                    <div class="profile-pic-wrapper">
-                        <img src="Image/WhatsApp Image 2025-11-23 at 23.14.42_d2fe1f16.jpg" alt="Ketan Patil"
-                            class="profile-pic">
-                    </div>
-                    <div class="contact-links">
-                        <a href="https://github.com/Mrketan" target="_blank" class="social-icon github"
-                            aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="mailto:patilketan1303@gmail.com" class="social-icon email" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="tel:+7517305365" class="social-icon phone" aria-label="Phone">
-                            <i class="fas fa-phone"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/ketan-patil-62629121b/" target="_blank"
-                            class="social-icon linkedin" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://wa.me/7517305365" target="_blank" class="social-icon whatsapp"
-                            aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                    <div class="card profile-card">
+                        <div class="profile-pic-wrapper">
+                            <img src="Image/WhatsApp Image 2025-11-23 at 23.14.42_d2fe1f16.jpg" alt="Ketan Patil" class="profile-pic">
+                        </div>
+                        <h3>Ketan Patil</h3>
+                        <p>Full Stack Developer</p>
+                        <div class="contact-links">
+                            <a href="https://github.com/Mrketan" target="_blank" class="social-icon" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:patilketan1303@gmail.com" class="social-icon" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+7517305365" class="social-icon" aria-label="Phone">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ketan-patil-62629121b/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://wa.me/7517305365" target="_blank" class="social-icon" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="text-content">
-                    <p>Hello, I'm Ketan Patil, a passionate software engineer with expertise in web development and
-                        software solutions. I love solving complex problems and building innovative applications that
-                        make life
-                        easier.</p>
+                    <div class="card">
+                        <p>Hello! I'm <span class="highlight">Ketan Patil</span>, a passionate software engineer with expertise in full-stack web development. I specialize in creating robust, scalable applications that deliver exceptional user experiences.</p>
 
-                    <h3>Professional Summary</h3>
-                    <p>User-focused Web Developer with strong experience in WordPress, PHP (CodeIgniter 4), and modern
-                        web technologies. Skilled in building secure, scalable websites and applications, custom plugin
-                        development, API integrations, and performance optimization. Experienced in handling complete
-                        project lifecycles, from requirement analysis to deployment. Comfortable working collaboratively
-                        and independently on complex web and fintech solutions.</p>
+                        <h3><i class="fas fa-rocket"></i> Professional Summary</h3>
+                        <p>User-focused Web Developer with strong experience in <span class="highlight">WordPress</span>, <span class="highlight">PHP (CodeIgniter 4)</span>, and modern web technologies. Skilled in building secure, scalable websites and applications, custom plugin development, API integrations, and performance optimization.</p>
+                        <p>Experienced in handling complete project lifecycles, from requirement analysis to deployment. Comfortable working collaboratively and independently on complex web and fintech solutions.</p>
 
-                    <div class="contact-details">
-                        <p><i class="fas fa-mobile-alt"></i> <strong>Mobile:</strong> <a href="tel:+7517305365">+91
-                                7517305365</a></p>
-                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a
-                                href="mailto:patilketan1303@gmail.com">patilketan1303@gmail.com</a></p>
-                        <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Pune, Maharashtra</p>
+                        <div class="contact-details">
+                            <p><i class="fas fa-mobile-alt"></i> <strong>Mobile:</strong> <a href="tel:+7517305365">+91 7517305365</a></p>
+                            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:patilketan1303@gmail.com">patilketan1303@gmail.com</a></p>
+                            <p><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Pune, Maharashtra</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1138,11 +1404,15 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skill" class="skill-section">
+    <section id="skill">
         <div class="container">
-            <h2>My Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+                <p class="section-subtitle">Technologies I work with to build amazing products</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="card skill-category">
                     <h3><i class="fas fa-code"></i> Programming Languages</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fab fa-cuttlefish"></i> C</span>
@@ -1154,7 +1424,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="card skill-category">
                     <h3><i class="fas fa-laptop-code"></i> Web Technologies</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fab fa-html5"></i> HTML</span>
@@ -1165,7 +1435,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="card skill-category">
                     <h3><i class="fas fa-layer-group"></i> Frameworks & CMS</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fas fa-fire"></i> CodeIgniter 4</span>
@@ -1174,7 +1444,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="card skill-category">
                     <h3><i class="fas fa-database"></i> Backend & Database</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fab fa-php"></i> PHP</span>
@@ -1183,7 +1453,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="card skill-category">
                     <h3><i class="fas fa-plug"></i> API Integrations</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fas fa-credit-card"></i> Payment Gateways</span>
@@ -1195,7 +1465,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category">
+                <div class="card skill-category">
                     <h3><i class="fas fa-tools"></i> Other Skills</h3>
                     <div class="skill-list">
                         <span class="skill-item"><i class="fas fa-headset"></i> Technical Support</span>
@@ -1208,276 +1478,137 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="work" class="work-section">
+    <section id="work">
         <div class="container">
-            <h2>My Projects</h2>
-            <p class="section-description">
-                I am dedicated to delivering high-quality, innovative projects that empower clients to reach their
-                goals.
-                From custom web development to eCommerce solutions, I craft seamless digital experiences tailored to
-                each
-                business's unique needs, ensuring functionality and design work in harmony to elevate brands.
-            </p>
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p class="section-subtitle">A showcase of my recent work and contributions</p>
+            </div>
 
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn" data-filter="wordpress">WordPress</button>
                 <button class="filter-btn" data-filter="codeigniter">CodeIgniter</button>
-                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-                <button class="filter-btn" data-filter="portfolio">Portfolio</button>
                 <button class="filter-btn" data-filter="fintech">Fintech</button>
+                <button class="filter-btn" data-filter="portfolio">Portfolio</button>
             </div>
 
             <div class="project-grid">
-                <!-- Sahyadree Softech -->
-                <div class="project-card" data-category="wordpress portfolio">
-                    <div class="project-image">
-                        <img src="Image/Sahyadree .png" alt="Sahyadree Softech Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Sahyadree Softech</h2>
-                        <p><strong>Website:</strong> <a href="https://sahyadreesofttech.com/" target="_blank">Visit the
-                                site <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Sahyadree Softech is a professional website I developed using WordPress, showcasing a
-                            comprehensive range of services and solutions. The design reflects the company's expertise
-                            in technology, quality, and innovation.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, PHP, HTML, CSS, Elementor, Yoast SEO, WPForms.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Tinyfinger -->
-                <div class="project-card" data-category="wordpress ecommerce">
-                    <div class="project-image">
-                        <img src="Image/tiny.png" alt="Tinyfinger eCommerce Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Tinyfinger - E-commerce Website</h2>
-                        <p><strong>Website:</strong> <a href="https://tinyfinger.net/" target="_blank">Visit the site <i
-                                    class="fas fa-external-link-alt"></i></a></p>
-                        <p>An eCommerce website for Tinyfinger, designed to be visually engaging, user-friendly, and
-                            optimized for a seamless shopping experience.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Spikermedia -->
-                <div class="project-card" data-category="wordpress portfolio">
-                    <div class="project-image">
-                        <img src="Image/Spiker media.png" alt="Spikermedia Digital Marketing Agency Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Spikermedia Digital Marketing Agency Website</h2>
-                        <p><strong>Website:</strong> <a href="https://spikermedia.com/" target="_blank">Visit the site
-                                <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Created a professional portfolio website for Spikermedia, a digital marketing agency, to
-                            showcase its services, client portfolio, and expertise in the digital marketing industry.
-                        </p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- The Humanangle -->
-                <div class="project-card" data-category="wordpress portfolio">
-                    <div class="project-image">
-                        <img src="Image/Humanangle.png" alt="The Humanangle Psychiatry Doctor Portfolio Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>The Humanangle – Psychiatry Doctor Portfolio Website</h2>
-                        <p><strong>Website:</strong> <a href="https://thehumanangle.in/" target="_blank">Visit the site
-                                <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Created a professional portfolio website for The Humanangle, a psychiatry doctor specializing
-                            in mental health services. The website highlights the doctor's expertise, services offered,
-                            patient testimonials, and contact information.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Corporate Coworks -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/Corporate Coworks.png" alt="Corporate Coworks Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Corporate Coworks</h2>
-                        <p><strong>Website:</strong> <a href="https://corporatecoworks.com" target="_blank">Visit the
-                                site <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Corporate Coworks is an aggregate website for coworking spaces with an election campaign
-                            agency component. The site was developed to streamline coworking space listings and provide
-                            a platform for clients involved in election campaigns.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Election Promotions -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/Eleprs.png" alt="Election Promotion Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Election Promotion Website – Election Campaign Agency</h2>
-                        <p><strong>Website:</strong> <a href="https://electionpromotions.com" target="_blank">Visit the
-                                site <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Developed an Election Promotion website specifically tailored for an election campaign
-                            agency. The platform provides comprehensive services focused solely on election campaign
-                            services.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Techlium Software Solutions -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/techlium.png" alt="Techlium Software Solutions Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Techlium Software Solutions</h2>
-                        <p><strong>Website:</strong> <a href="https://techlium.com/" target="_blank">Visit the site <i
-                                    class="fas fa-external-link-alt"></i></a></p>
-                        <p>Developed and migrated the Techlium Software Solutions website, an IT service platform aimed
-                            at providing comprehensive solutions for businesses in the IT sector.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- MMinterio -->
-                <div class="project-card" data-category="wordpress portfolio">
-                    <div class="project-image">
-                        <img src="Image/mm.png" alt="MMinterio Interior Design Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>MMinterio - Interior Design Website</h2>
-                        <p><strong>Website:</strong> <a href="https://mminterio.com" target="_blank">Visit the site <i
-                                    class="fas fa-external-link-alt"></i></a></p>
-                        <p>MMinterio is an Interior Design website that provides innovative and stylish solutions for
-                            home and office interiors. The website highlights their design services and showcases
-                            portfolio pieces effectively.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Brandedge Infotech -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/brandedge infotech .png" alt="Brandedge Infotech Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Brandedge Infotech</h2>
-                        <p><strong>Website:</strong> <a href="https://brandedgeinfotech.com" target="_blank">Visit the
-                                site <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Brandedge Infotech is a digital marketing company that offers comprehensive IT services. I
-                            was responsible for the full-fledged development and management of their website.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Satva Ayurveda -->
-                <div class="project-card" data-category="wordpress portfolio">
-                    <div class="project-image">
-                        <img src="Image/Satva.png" alt="Satva Ayurveda Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Satva Ayurveda – Panchkarma & Reiki Healing Center</h2>
-                        <p><strong>Website:</strong> <a href="https://satvaayurveda.in" target="_blank">Visit the site
-                                <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Created and managed the website for Satva Ayurveda, a Panchkarma and Reiki Healing Center.
-                            The website showcases their wellness services, offering visitors information about their
-                            therapies and healing practices.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- The Vijayantra -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/vj.png" alt="The Vijayantra Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>The Vijayantra Website</h2>
-                        <p><strong>Website:</strong> <a href="https://vijayantra.com" target="_blank">Visit the site <i
-                                    class="fas fa-external-link-alt"></i></a></p>
-                        <p>Developed The Vijayantra website, an all-in-one business platform designed to serve multiple
-                            business purposes. The platform's clean layout and interactive sections ensure that users
-                            have an engaging and seamless experience.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Pune Coworking -->
-                <div class="project-card" data-category="wordpress">
-                    <div class="project-image">
-                        <img src="Image/pc.png" alt="Pune Coworking Website">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Pune Coworking Website</h2>
-                        <p><strong>Website:</strong> <a href="https://punecoworking.com/" target="_blank">Visit the site
-                                <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Designed and developed the Pune Coworking website, a platform dedicated to offering
-                            co-working office spaces in Pune. The website allows users to explore available co-working
-                            office spaces with detailed information about facilities, pricing, and booking options.</p>
-                        <p><strong>Technologies Used:</strong> WordPress, Elementor, HTML, CSS, JavaScript.</p>
-                    </div>
-                </div>
-
-                <!-- Techfreshers.org - LMS Platform -->
-                <div class="project-card" data-category="codeigniter">
+                <!-- Techfreshers.org -->
+                <div class="card project-card" data-category="codeigniter">
                     <div class="project-image">
                         <img src="Image/Techfresher.png" alt="Techfreshers.org LMS Platform">
                     </div>
                     <div class="project-card-content">
-                        <h2>Techfreshers.org - LMS Platform</h2>
-                        <p><strong>Website:</strong> <a href="https://techfreshers.org/" target="_blank">Visit the site
-                                <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Developed a comprehensive Learning Management System with instructor and student login
-                            system, course management system, PDF syllabus upload, reward & point system, and
-                            Zoom/Google Meet & AI integration.</p>
-                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, JavaScript.</p>
+                        <h3>Techfreshers.org - LMS Platform</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">CodeIgniter 4</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">API Integration</span>
+                        </div>
+                        <p>Developed a comprehensive Learning Management System with instructor and student login system, course management, PDF syllabus upload, reward system, and Zoom/Google Meet & AI integration.</p>
+                        <a href="https://techfreshers.org/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Erupaiya.com - Fintech/Wallet Application -->
-                <div class="project-card" data-category="codeigniter fintech">
+                <!-- Erupaiya.com -->
+                <div class="card project-card" data-category="codeigniter fintech">
                     <div class="project-image">
                         <img src="Image/Erupaiya.png" alt="Erupaiya Fintech Application">
                     </div>
                     <div class="project-card-content">
-                        <h2>Erupaiya.com - Fintech/Wallet Application</h2>
-                        <p><strong>Website:</strong> <a href="https://erupaiya.com/" target="_blank">Visit the site <i
-                                    class="fas fa-external-link-alt"></i></a></p>
-                        <p>Built on CodeIgniter 4, this fintech application features Wallet System, BBPS, DMT, Payout,
-                            Bulk Payout, UPI, and Bharat Connect Utilities. Handles complete transaction backend
-                            operations with four panels: Admin, Master Distributor, Distributor, Agent.</p>
-                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, HTML, CSS.</p>
+                        <h3>Erupaiya.com - Fintech/Wallet Application</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">CodeIgniter 4</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Payment APIs</span>
+                        </div>
+                        <p>Built on CodeIgniter 4, this fintech application features Wallet System, BBPS, DMT, Payout, Bulk Payout, UPI, and Bharat Connect Utilities with four admin panels.</p>
+                        <a href="https://erupaiya.com/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sahyadree Softech -->
+                <div class="card project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Sahyadree .png" alt="Sahyadree Softech Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Sahyadree Softech</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">Elementor</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">SEO</span>
+                        </div>
+                        <p>Professional website showcasing comprehensive range of services and solutions. The design reflects the company's expertise in technology, quality, and innovation.</p>
+                        <a href="https://sahyadreesofttech.com/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Spikermedia -->
+                <div class="card project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Spiker media.png" alt="Spikermedia Digital Marketing Agency Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Spikermedia Digital Marketing Agency</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">Elementor</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <p>Professional portfolio website for Spikermedia, showcasing services, client portfolio, and expertise in the digital marketing industry.</p>
+                        <a href="https://spikermedia.com/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- The Humanangle -->
+                <div class="card project-card" data-category="wordpress portfolio">
+                    <div class="project-image">
+                        <img src="Image/Humanangle.png" alt="The Humanangle Psychiatry Doctor Portfolio Website">
+                    </div>
+                    <div class="project-card-content">
+                        <h3>The Humanangle – Psychiatry Portfolio</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">Elementor</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <p>Professional portfolio website for The Humanangle, a psychiatry doctor specializing in mental health services, featuring expertise, services, and testimonials.</p>
+                        <a href="https://thehumanangle.in/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Vehicle Registration System -->
-                <div class="project-card" data-category="codeigniter">
+                <div class="card project-card" data-category="codeigniter">
                     <div class="project-image">
                         <img src="Image/rc.png" alt="Vehicle Registration System">
                     </div>
                     <div class="project-card-content">
-                        <h2>Vehicle Registration System</h2>
-                        <p><strong>Website:</strong> <a href="https://www.innoplixit.com/vehicleregistration/"
-                                target="_blank">Visit the site <i class="fas fa-external-link-alt"></i></a></p>
-                        <p>Working on vehicle registration system with RC Verification API integration and Cashfree APIs
-                            testing for Innoplix IT Pvt. Ltd.</p>
-                        <p><strong>Technologies Used:</strong> CodeIgniter 4, PHP, MySQL, RC Verification API, Cashfree
-                            APIs.</p>
-                    </div>
-                </div>
-
-                <!-- Multi-Functional Robot (IoT-Based) -->
-                <div class="project-card" data-category="iot">
-                    <div class="project-image">
-                        <img src="Image/robot-placeholder.jpg" alt="Multi-Functional Robot">
-                    </div>
-                    <div class="project-card-content">
-                        <h2>Multi-Functional Robot (IoT-Based)</h2>
-                        <p><strong>Role:</strong> Circuit Designer</p>
-                        <p>Developed obstacle detection using ultrasonic sensors and implemented automatic navigation
-                            and decision-making algorithms for an IoT-based multi-functional robot.</p>
-                        <p><strong>Technologies Used:</strong> IoT, Arduino, Sensors, C++.</p>
+                        <h3>Vehicle Registration System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">CodeIgniter 4</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Cashfree</span>
+                        </div>
+                        <p>Vehicle registration system with RC Verification API integration and Cashfree APIs testing for Innoplix IT Pvt. Ltd.</p>
+                        <a href="https://www.innoplixit.com/vehicleregistration/" target="_blank" class="project-link">
+                            Visit Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1487,25 +1618,38 @@
     <!-- Education Section -->
     <section id="education">
         <div class="container">
-            <h2>My Education</h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <h3><i class="fas fa-graduation-cap"></i> Bachelor of Engineering in Computer Science</h3>
-                    <p class="institution">MET Bhujbal Knowledge City, Nashik</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> 2019 - 2023</p>
-                    <p class="description">CGPA: 7.58</p>
+            <div class="section-header">
+                <h2>Education</h2>
+                <p class="section-subtitle">My academic background and qualifications</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-graduation-cap"></i> Bachelor of Engineering in Computer Science</h3>
+                        <p class="institution">MET Bhujbal Knowledge City, Nashik</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> 2019 - 2023</p>
+                        <p class="description">CGPA: 7.58 | Specialized in Software Engineering and Web Technologies</p>
+                    </div>
                 </div>
-                <div class="education-item">
-                    <h3><i class="fas fa-school"></i> Higher Secondary Certificate (HSC)</h3>
-                    <p class="institution">K.T.H.M College, Nashik</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> 2018 - 2019</p>
-                    <p class="description">Percentage: 55.69%</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-school"></i> Higher Secondary Certificate (HSC)</h3>
+                        <p class="institution">K.T.H.M College, Nashik</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> 2018 - 2019</p>
+                        <p class="description">Percentage: 55.69% | Focused on Science and Mathematics</p>
+                    </div>
                 </div>
-                <div class="education-item">
-                    <h3><i class="fas fa-book"></i> Secondary School Certificate (SSC)</h3>
-                    <p class="institution">Rachana Vidhyalaya, Nashik</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> 2016 - 2017</p>
-                    <p class="description">Percentage: 78.80%</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-book"></i> Secondary School Certificate (SSC)</h3>
+                        <p class="institution">Rachana Vidhyalaya, Nashik</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> 2016 - 2017</p>
+                        <p class="description">Percentage: 78.80% | Foundation in Computer Science</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1514,117 +1658,120 @@
     <!-- Experience Section -->
     <section id="experience">
         <div class="container">
-            <h2>Work Experience</h2>
-            <div class="experience-container">
-                <div class="experience-item">
-                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
-                    <p class="institution">Innoplix IT Pvt. Ltd.</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2025 – Present</p>
-                    <p class="description">
-                        Developing and maintaining company website using HTML, CSS, JavaScript, and PHP. Created custom
-                        WordPress plugins and integrated RC Verification API. Working on vehicle registration system and
-                        Techfreshers.org LMS platform.
-                    </p>
+            <div class="section-header">
+                <h2>Work Experience</h2>
+                <p class="section-subtitle">Professional journey and career milestones</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                        <p class="institution">Innoplix IT Pvt. Ltd.</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> Jan 2025 – Present</p>
+                        <p class="description">
+                            Developing and maintaining company website using HTML, CSS, JavaScript, and PHP. Created custom WordPress plugins and integrated RC Verification API. Working on vehicle registration system and Techfreshers.org LMS platform.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="experience-item">
-                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
-                    <p class="institution">Ozone CoWorks / Techlium Software Solutions</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> July 2024 – Jan 2025
-                    </p>
-                    <p class="description">
-                        Built custom WordPress themes and web applications. Designed database schemas & integrated
-                        third-party APIs. Deployed applications on Apache/Nginx servers.
-                    </p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                        <p class="institution">Ozone CoWorks / Techlium Software Solutions</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> July 2024 – Jan 2025</p>
+                        <p class="description">
+                            Built custom WordPress themes and web applications. Designed database schemas & integrated third-party APIs. Deployed applications on Apache/Nginx servers.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="experience-item">
-                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
-                    <p class="institution">Sahyadree Softech Pvt Ltd</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2024 – June 2024</p>
-                    <p class="description">
-                        Migrated websites to WordPress. Developed custom post types, plugins, and taxonomies.
-                        Implemented best practices for website security.
-                    </p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
+                        <p class="institution">Sahyadree Softech Pvt Ltd</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> Jan 2024 – June 2024</p>
+                        <p class="description">
+                            Migrated websites to WordPress. Developed custom post types, plugins, and taxonomies. Implemented best practices for website security.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="experience-item">
-                    <h3><i class="fas fa-briefcase"></i> Web Developer</h3>
-                    <p class="institution">PRObity IT Services</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> July 2023 – Dec 2023</p>
-                    <p class="description">
-                        Improved cross-browser compatibility. Designed responsive layouts. Configured servers for
-                        WordPress optimization.
-                    </p>
-                </div>
-
-                <div class="experience-item">
-                    <h3><i class="fas fa-user-tie"></i> Self Employment</h3>
-                    <p class="institution">WebWave Solution</p>
-                    <p class="year"><i class="far fa-calendar-alt"></i> Jan 2021 - Present</p>
-                    <p class="description">
-                        As a Self-Employed Web Developer, I specialized in full-stack web applications tailored to
-                        client needs, focusing on performance optimization and seamless integration.
-                    </p>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-user-tie"></i> Self Employment</h3>
+                        <p class="institution">WebWave Solution</p>
+                        <p class="year"><i class="far fa-calendar-alt"></i> Jan 2021 - Present</p>
+                        <p class="description">
+                            Specialized in full-stack web applications tailored to client needs, focusing on performance optimization and seamless integration for various businesses.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certifications Section -->
-    <section id="certifications" class="certifications-section">
+    <section id="certifications">
         <div class="container">
-            <h2>Certifications</h2>
-            <div class="certifications-container">
-                <div class="certification-item">
+            <div class="section-header">
+                <h2>Certifications</h2>
+                <p class="section-subtitle">Professional certifications and achievements</p>
+            </div>
+            
+            <div class="certifications-grid">
+                <div class="card certification-item">
                     <h3>Journal of Interdisciplinary Cycle Research Certification</h3>
-                    <p>Certification in interdisciplinary research methodologies and applications.</p>
+                    <p>Certification in interdisciplinary research methodologies and applications, focusing on innovative approaches to complex problems.</p>
                 </div>
-                <div class="certification-item">
+                <div class="card certification-item">
                     <h3>National Skill Development Corporation Certificate</h3>
-                    <p>Certificate from NSDC validating web development skills and competencies.</p>
+                    <p>Certificate from NSDC validating web development skills and competencies in modern web technologies and frameworks.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resume Section -->
-    <section id="resume" class="resume-section">
+    <section id="resume">
         <div class="container">
-            <h2>My Resume & Cover Letter</h2>
+            <div class="section-header">
+                <h2>Resume & Cover Letter</h2>
+                <p class="section-subtitle">Download my professional documents</p>
+            </div>
+            
             <div class="resume-content">
-                <div class="resume-item">
+                <div class="card resume-item">
                     <h3><i class="fas fa-file-pdf"></i> Resume</h3>
-                    <div
-                        style="background: #f8fafc; padding: 30px; border-radius: var(--radius); margin-bottom: 20px; height: 500px; overflow: auto;">
-                        <h4>Ketan Patil - Resume Preview</h4>
-                        <p><strong>Full Stack Web Developer</strong></p>
+                    <div class="resume-preview">
+                        <h4>Ketan Patil - Full Stack Developer</h4>
                         <p><strong>Contact:</strong> +91 7517305365 | patilketan1303@gmail.com</p>
                         <p><strong>Location:</strong> Pune, Maharashtra</p>
-                        <hr style="margin: 20px 0; border-color: #e2e8f0;">
+                        <hr style="margin: 20px 0; border-color: #334155;">
                         <h5>Professional Summary</h5>
-                        <p>User-focused Web Developer with strong experience in WordPress, PHP (CodeIgniter 4), and
-                            modern web technologies...</p>
+                        <p>User-focused Web Developer with 2+ years experience in WordPress, PHP (CodeIgniter 4), and modern web technologies. Skilled in building secure, scalable websites...</p>
                         <h5>Technical Skills</h5>
-                        <p>WordPress, PHP, CodeIgniter 4, HTML, CSS, JavaScript, MySQL, React JS, API Integrations</p>
+                        <p>WordPress, PHP, CodeIgniter 4, HTML, CSS, JavaScript, MySQL, React JS, API Integrations, Git, Docker</p>
                         <h5>Experience</h5>
                         <p><strong>Web Developer</strong> - Innoplix IT Pvt. Ltd. (Jan 2025 - Present)</p>
-                        <p>Developing and maintaining company websites, creating custom WordPress plugins...</p>
+                        <p>Developing and maintaining company websites, creating custom WordPress plugins, API integrations...</p>
                     </div>
                     <a href="Ketan_Patil_Web.pdf" download class="download-button">
-                        <i class="fas fa-download"></i> Download Resume
+                        <i class="fas fa-download"></i> Download Resume (PDF)
                     </a>
                 </div>
-                <div class="cover-letter-item">
+                <div class="card resume-item">
                     <h3><i class="fas fa-file-alt"></i> Cover Letter</h3>
-                    <div
-                        style="background: #f8fafc; padding: 30px; border-radius: var(--radius); margin-bottom: 20px; height: 500px; overflow: auto;">
-                        <h4>Ketan Patil - Cover Letter Preview</h4>
+                    <div class="resume-preview">
+                        <h4>Ketan Patil - Cover Letter</h4>
                         <p>Dear Hiring Manager,</p>
-                        <p>I am writing to express my interest in the Web Developer position at your company. With 2+
-                            years of experience in full-stack web development...</p>
+                        <p>I am writing to express my interest in the Web Developer position at your company. With 2+ years of experience in full-stack web development...</p>
                         <p>My expertise includes:</p>
-                        <ul>
+                        <ul style="text-align: left; padding-left: 20px;">
                             <li>WordPress development and customization</li>
                             <li>PHP and CodeIgniter 4 framework</li>
                             <li>Frontend technologies (HTML, CSS, JavaScript, React)</li>
@@ -1643,40 +1790,50 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-container">
-                <div class="footer-logo">
-                    <img src="Image/LOGO.jpg" alt="Company Logo" class="logo">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="Image/LOGO.jpg" alt="Ketan Patil">
+                        <span class="logo-text">Ketan Patil</span>
+                    </div>
+                    <p>Full Stack Web Developer specializing in creating exceptional digital experiences with modern technologies and innovative solutions.</p>
                 </div>
                 <div class="footer-social">
-                    <h3>Follow Me</h3>
+                    <h3>Connect With Me</h3>
                     <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/ketan-patil-webdeveloper/" target="_blank"
-                            aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/Mrketan" target="_blank" aria-label="GitHub"><i
-                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ketan-patil-62629121b/" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Mrketan" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/7517305365" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:patilketan1303@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="footer-contact">
-                    <h3>Contact Me</h3>
+                    <h3>Get In Touch</h3>
                     <div class="contact-buttons">
-                        <a href="tel:+7517305365" class="contact-button call-button" aria-label="Call Us">
-                            <i class="fas fa-phone-alt"></i> Call
+                        <a href="tel:+7517305365" class="contact-button">
+                            <i class="fas fa-phone-alt"></i> +91 7517305365
                         </a>
-                        <a href="mailto:patilketan1303@gmail.com" class="contact-button mail-button"
-                            aria-label="Mail Us">
-                            <i class="fas fa-envelope"></i> Mail
+                        <a href="mailto:patilketan1303@gmail.com" class="contact-button">
+                            <i class="fas fa-envelope"></i> patilketan1303@gmail.com
                         </a>
-                        <a href="https://wa.link/l6ivpm" target="_blank" class="contact-button whatsapp-button"
-                            aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        <a href="https://wa.me/7517305365" target="_blank" class="contact-button">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Message
                         </a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Ketan Patil. Designed with ❤️ by Ketan Patil.</p>
+                <p>&copy; 2025 Ketan Patil. All rights reserved. | Designed & Developed with ❤️ by Ketan Patil</p>
             </div>
         </div>
     </footer>
@@ -1686,8 +1843,51 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Hide loading screen
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('hidden');
+            }, 1000);
+
+            // Initialize Particles.js
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#6366f1" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#6366f1",
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" }
+                    }
+                }
+            });
+
             // Mobile Menu Toggle
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.querySelector('.nav-links');
@@ -1715,7 +1915,7 @@
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
                         });
                     }
@@ -1726,6 +1926,7 @@
             const scrollTopBtn = document.getElementById('scrollTop');
 
             window.addEventListener('scroll', function () {
+                // Show/hide scroll to top button
                 if (window.pageYOffset > 300) {
                     scrollTopBtn.classList.add('visible');
                 } else {
@@ -1736,9 +1937,9 @@
                 const sections = document.querySelectorAll('section[id]');
                 let current = '';
                 sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
+                    const sectionTop = section.offsetTop - 150;
                     const sectionHeight = section.clientHeight;
-                    if (scrollY >= (sectionTop - 100)) {
+                    if (scrollY >= sectionTop) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -1747,6 +1948,17 @@
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${current}`) {
                         link.classList.add('active');
+                    }
+                });
+
+                // Animate on scroll
+                const animateElements = document.querySelectorAll('.animate-on-scroll');
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.classList.add('visible');
                     }
                 });
             });
@@ -1771,12 +1983,15 @@
 
                     const filterValue = this.getAttribute('data-filter');
 
-                    // Filter projects
+                    // Filter projects with animation
                     projectCards.forEach(card => {
                         const categories = card.getAttribute('data-category');
 
                         if (filterValue === 'all' || categories.includes(filterValue)) {
                             card.style.display = 'flex';
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            
                             setTimeout(() => {
                                 card.style.opacity = '1';
                                 card.style.transform = 'translateY(0)';
@@ -1792,69 +2007,11 @@
                 });
             });
 
-            // Add animation on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all sections for animation
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
-
-            // Skill item hover effect enhancement
-            const skillItems = document.querySelectorAll('.skill-item');
-            skillItems.forEach(item => {
-                item.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-5px) scale(1.05)';
-                });
-
-                item.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Add typewriter effect to hero section
-            const heroText = document.querySelector('.hero-content h1');
-            const originalText = heroText.textContent;
-            heroText.textContent = '';
-
-            let i = 0;
-            const typeWriter = () => {
-                if (i < originalText.length) {
-                    heroText.textContent += originalText.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            };
-
-            // Start typing after a short delay
-            setTimeout(typeWriter, 500);
-
-            // Parallax effect for hero section
-            window.addEventListener('scroll', function () {
-                const scrolled = window.pageYOffset;
-                const hero = document.querySelector('.hero-section');
-                if (scrolled < hero.offsetHeight) {
-                    hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-                }
-            });
-
-            // Initialize all projects as visible
-            projectCards.forEach(card => {
-                card.style.display = 'flex';
-                card.style.opacity = '1';
-                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            });
+            // Add floating animation to hero badge
+            const heroBadge = document.querySelector('.hero-badge');
+            if (heroBadge) {
+                heroBadge.classList.add('floating');
+            }
 
             // Handle image loading errors
             document.querySelectorAll('img').forEach(img => {
@@ -1868,7 +2025,7 @@
                         circle.setAttribute('cx', '50');
                         circle.setAttribute('cy', '50');
                         circle.setAttribute('r', '45');
-                        circle.setAttribute('fill', '#2563eb');
+                        circle.setAttribute('fill', '#6366f1');
 
                         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                         text.setAttribute('x', '50');
@@ -1890,6 +2047,52 @@
                         this.setAttribute('data-fallback-set', 'true');
                     }
                 });
+            });
+
+            // Add animation class to all cards
+            document.querySelectorAll('.card, .timeline-item, .project-card').forEach((element, index) => {
+                element.classList.add('animate-on-scroll');
+                element.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Typewriter effect for hero section
+            const heroTitle = document.querySelector('.hero-content h1');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            
+            if (heroTitle) {
+                const text = heroTitle.textContent;
+                heroTitle.textContent = '';
+                let i = 0;
+                
+                function typeWriter() {
+                    if (i < text.length) {
+                        heroTitle.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                }
+                
+                // Start typing after loading
+                setTimeout(typeWriter, 1500);
+            }
+
+            // Initialize all projects as visible
+            projectCards.forEach(card => {
+                card.style.display = 'flex';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+
+        // Add parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.hero-section');
+            
+            parallaxElements.forEach(element => {
+                element.style.transform = `translateY(${scrolled * 0.05}px)`;
             });
         });
     </script>
